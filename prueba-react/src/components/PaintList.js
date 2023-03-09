@@ -2,9 +2,15 @@
 
 const PaintList = (props) => {
     const handleClick =  (url) => {
-        props.detail(url);
+        props.details(url);
      console.log(url);
-      };          
+      }; 
+      const handleClickNext = () => {
+        props.setPages(props.pages + 1);
+      };    
+      const handleClickPrevios = () => {
+        props.setPages(props.pages - 1);
+      };    
       return ( 
       <div className='div-list'> 
      <ul className='ul'> Listado
@@ -13,9 +19,9 @@ const PaintList = (props) => {
 
      ))}
      </ul>
-     <button>Prev</button>
+     <button onClick={handleClickNext}>Prev</button>
      ||  {props.pages} ||
-     <button>Next</button>
+     <button onClick={handleClickPrevios}>Next</button>
      <aside>
         <p>DETALLES</p>
      <p>{props.dataDetailConst.name}</p>

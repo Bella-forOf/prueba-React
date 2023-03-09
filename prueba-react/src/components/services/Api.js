@@ -1,5 +1,5 @@
-const getDataFromAPI = () => {
-    return fetch('https://swapi.dev/api/people/?page=1&format=json')
+const getDataFromAPI = (page = 1) => {
+    return fetch(`https://swapi.dev/api/people/?page=${page}&format=json`)
       .then((response) => response.json())
       .then((data) => {
         const cleanData = data.results.map((user) => {

@@ -17,10 +17,10 @@ function App() {
   const titleClass = "title";
 
   useEffect(() => {
-    getDataFromAPI().then((cleanData) => {
+    getDataFromAPI(pages).then((cleanData) => {
       setData(cleanData);
   });
-},[]);
+},[pages]);
 
 useEffect(() => {
   getCharacter(currentCharacter).then((dataDetail) => {
@@ -40,6 +40,14 @@ useEffect(() => {
     const id = url.split('/');
     const id2 = id.slice(-2)[0];
 setCurrentCharacter(id2);
+
+// const nextPage = (ev)=> {
+//   ev.preventDefaul
+//   setPages(pages + 1);
+// }
+// const previousPage = (ev)=> {
+//   setPages(pages - 1);
+// }
   }
   return (
     <div> 
@@ -62,8 +70,10 @@ setCurrentCharacter(id2);
         <PaintList
         data={data}
         dataDetailConst={dataDetailConst}
-        detail={details}
-        pages={pages}></PaintList>
+        details={details}
+        pages={pages}
+        setPages={setPages}
+        ></PaintList>
       </main>
     </div>
       
