@@ -12,6 +12,7 @@ function App() {
   const [data, setData] = useState([]);
   const [dataDetailConst, setDataDetailConst] = useState({});
   const [currentCharacter, setCurrentCharacter] = useState (1);
+  const [pages, setPages] = useState(1);
   const nameWorld = "mundo";
   const titleClass = "title";
 
@@ -34,10 +35,11 @@ useEffect(() => {
   const handleChangeName = (ev) => {
     setName(ev.target.value)
   };
-  const details = (data) => {
+  const details = (url) => {
     debugger;
-    const id = Number(data.url.split('/')).slice(-2)[0];
-setCurrentCharacter(id);
+    const id = url.split('/');
+    const id2 = id.slice(-2)[0];
+setCurrentCharacter(id2);
   }
   return (
     <div> 
@@ -60,7 +62,8 @@ setCurrentCharacter(id);
         <PaintList
         data={data}
         dataDetailConst={dataDetailConst}
-        detail={details}></PaintList>
+        detail={details}
+        pages={pages}></PaintList>
       </main>
     </div>
       

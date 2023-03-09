@@ -1,18 +1,21 @@
 
 
 const PaintList = (props) => {
-    const handleClick =  (ev) => {
-        props.details(ev.target.url);
-     console.log(ev.target.url);
+    const handleClick =  (url) => {
+        props.detail(url);
+     console.log(url);
       };          
       return ( 
       <div className='div-list'> 
      <ul className='ul'> Listado
      {props.data.map((character)=>(
-        <li key={character.name} onClick={handleClick}><span>Nombre: {character.name}</span><span> ------Altura:{character.height}</span></li> 
+        <li key={character.name} onClick={() => handleClick(character.url)}><span>Nombre: {character.name}</span><span> ------Altura:{character.height}</span></li> 
 
      ))}
      </ul>
+     <button>Prev</button>
+     ||  {props.pages} ||
+     <button>Next</button>
      <aside>
         <p>DETALLES</p>
      <p>{props.dataDetailConst.name}</p>
