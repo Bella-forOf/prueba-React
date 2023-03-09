@@ -4,11 +4,14 @@ import Header from './Header';
 import PaintList from './PaintList';
 import { useEffect, useState } from 'react';
 import getDataFromAPI from './services/Api';
+import getCharacter from './services/Api2';
 
 function App() {
   const [name, setName] = useState('Lola');
   const [name2, setName2] = useState('Apellido');
   const [data, setData] = useState([]);
+  const [dataDetailConst, setDataDetailConst] = useState({});
+  const [currentCharacter, setCurrentCharacter] = useState (1);
   const nameWorld = "mundo";
   const titleClass = "title";
 
@@ -18,12 +21,24 @@ function App() {
   });
 },[]);
 
+useEffect(() => {
+  getCharacter(currentCharacter).then((dataDetail) => {
+    setDataDetailConst(dataDetail);
+    console.log(dataDetailConst)
+});
+},[currentCharacter]);
+
   const handleOnSubmit = (ev) => {
     ev.preventDefaul();
   };
   const handleChangeName = (ev) => {
     setName(ev.target.value)
   };
+  const details = (data) => {
+    debugger;
+    const id = Number(data.url.split('/')).slice(-2)[0];
+setCurrentCharacter(id);
+  }
   return (
     <div> 
       <Header></Header>
@@ -43,7 +58,9 @@ function App() {
       /> 
       </form>
         <PaintList
-        data={data}></PaintList>
+        data={data}
+        dataDetailConst={dataDetailConst}
+        detail={details}></PaintList>
       </main>
     </div>
       

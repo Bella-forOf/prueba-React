@@ -8,6 +8,7 @@ const getDataFromAPI = () => {
             height: user.height,
             mass: user.mass,
             gender: user.gender,
+            url: user.url
           };
         });
         return cleanData;
@@ -25,4 +26,10 @@ const getDataFromAPI = () => {
       });
      
   };
+
+
+
+
+
   export default getDataFromAPI;
+  
